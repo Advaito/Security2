@@ -9,5 +9,7 @@ public interface RoleService {
     Role findByName(String name);
     void save(Role role);
 
+    Set<Role> findById(int[] id);
+
 
 }

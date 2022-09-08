@@ -24,6 +24,13 @@
     <input type="text" th:field="*{email}" id="email"/>
     <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
     <br/>
+    <tr>
+        <th th:align="left">Role</th>
+        <td th:each="role : ${allRoles}">
+            <input name="roleId" type="checkbox" th:text="${role.getName().substring(5)}" id="role" th:value="${role.id}" th:field="*{roles}"/>
+        </td>
+    </tr>
+    <br/>
     <input type="submit" value="Создать"/>
 </form>
 <form th:action="@{/logout}" th:method="POST">
