@@ -35,4 +35,12 @@ public class UserDaoimp implements UserDao{
     public void deleteUser(int id) {
         entityManager.remove(getUserById(id));
     }
+
+    @Override
+    public User getUserByName(String name) {
+        return entityManager
+                .createQuery("select u from User u where u.username = :username", User.class)
+                .setParameter("username", name)
+                .getSingleResult();
+    }
 }

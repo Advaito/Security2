@@ -3,7 +3,8 @@ package com.example.service;
 
 import com.example.dao.UserDao;
 import com.example.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ public class UserServiceimp implements UserService{
 
     private final UserDao userDao;
 
-    @Autowired
+
     public UserServiceimp(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -45,5 +46,14 @@ public class UserServiceimp implements UserService{
     @Transactional
     public void deleteUser(int id) {
         userDao.deleteUser(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userDao.getUserByName(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return user;
     }
 }

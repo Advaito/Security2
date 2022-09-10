@@ -2,14 +2,12 @@ package com.example.service;
 
 import com.example.models.Role;
 
+import java.util.List;
 import java.util.Set;
 
 public interface RoleService {
-    Set<Role> findAll();
-    Role findByName(String name);
-    void save(Role role);
-
-    Set<Role> findById(int[] id);
-
+    List<Role> getAllRoles();
+    void addRole(Role role);
+    Set<Role> findRollsbyId(String RoleIds);
 
 }

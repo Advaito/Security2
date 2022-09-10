@@ -1,11 +1,11 @@
 package com.example.models;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 
@@ -20,7 +20,7 @@ public class Role implements GrantedAuthority {
     private Set<User> users;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false, length = 45)
     private String name;
@@ -33,5 +33,8 @@ public class Role implements GrantedAuthority {
     public Role(String name) {
         this.name = name;
     }
-
+    @Override
+    public String toString() {
+        return name.split("_")[1] + "\n";
+    }
 }

@@ -38,35 +38,35 @@ public class AdminController {
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("allRoles", roleService.findAll());
+        model.addAttribute("allRoles", roleService.getAllRoles());
         return "admin/new";
     }
 
     @PostMapping
-    public String createUser(@RequestParam("roles") int[] roleId,
+    public String createUser(@RequestParam("roles") String roleId,
                              @ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "admin/new";
         }
-        user.setRoles(roleService.findById(roleId));
+        user.setRoles(roleService.findRollsbyId(roleId));
         userService.saveUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
     public String editUser(Model model, @PathVariable("id") int id) {
-        model.addAttribute("allRoles", roleService.findAll());
+        model.addAttribute("allRoles", roleService.getAllRoles());
         model.addAttribute("user", userService.getUserById(id));
         return "admin/edit";
     }
 
     @PatchMapping("/{id}")
-    public String updateUser(@RequestParam("roles") int[] roleId, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, @PathVariable("id") int id) {
+    public String updateUser(@RequestParam("roles") String roleId, @ModelAttribute("user") @Valid User user, BindingResult bindingResult, @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "admin/edit";
         }
-        user.setRoles(roleService.findById(roleId));
+        user.setRoles(roleService.findRollsbyId(roleId));
         userService.updateUser(user);
         return "redirect:/admin";
     }

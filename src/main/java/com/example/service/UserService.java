@@ -2,10 +2,11 @@ package com.example.service;
 
 
 import com.example.models.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     List<User> getAllUsers();
     User getUserById(int id);
     void saveUser(User user);
