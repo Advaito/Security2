@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dao.RoleDao;
 import com.example.models.Role;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +17,7 @@ public class RoleServiceimp implements RoleService {
         this.roleDao = roleDao;
     }
     @Override
+    @Transactional
     public void addRole(Role role) {
         roleDao.saveRole(role);
     }
@@ -30,7 +32,10 @@ public class RoleServiceimp implements RoleService {
         return roles;
     }
     @Override
+    @Transactional
     public List<Role> getAllRoles() {
         return roleDao.getAllRoles();
     }
+
+
 }
