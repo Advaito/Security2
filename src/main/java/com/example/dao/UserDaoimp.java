@@ -39,8 +39,8 @@ public class UserDaoimp implements UserDao{
     @Override
     public User getUserByName(String name) {
         return entityManager
-                .createQuery("select u from User u where u.username = :username", User.class)
-                .setParameter("username", name)
+                .createQuery("select u from User u where u.login = :login", User.class)
+                .setParameter("login", name)
                 .getSingleResult();
     }
 }

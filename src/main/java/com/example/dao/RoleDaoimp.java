@@ -14,11 +14,16 @@ public class RoleDaoimp implements RoleDao{
     @PersistenceContext
     private EntityManager entityManager;
 
+
     public List<Role> getAllRoles() {
         TypedQuery<Role> query = entityManager.createQuery("select r from Role r", Role.class);
         return query.getResultList();
     }
-
+    @Override
+    public Role getRole(String name) {
+        return entityManager.createQuery("select r from Role r where r.name =: name", Role.class)
+                .setParameter("name", name).getSingleResult();
+    }
     public void saveRole(Role role) {
         entityManager.persist(role);
     }

@@ -25,9 +25,17 @@ public class User implements UserDetails {
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
+    @Column(name = "name")
+    private String name;
+
+    @NotEmpty(message = "Surname should not be empty")
+    @Column(name = "surname")
+    private String surname;
+
+    @NotEmpty(message = "username should not be empty")
     @Size(min = 2, max = 30, message = "Name from 2 to 30 characters")
-    @Column(name = "username")
-    private String username;
+    @Column(name = "login")
+    private String login;
 
     @Min(value = 0, message = "Age cannot be negative")
     @Column(name = "age")
@@ -54,8 +62,8 @@ public class User implements UserDetails {
         this.roles.add(role);
     }
 
-    public User(String username, String password) {
-        this.username = username;
+    public User(String login, String password) {
+        this.login = login;
         this.password = password;
     }
 
@@ -85,6 +93,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
+    }
+
+    @Override
+    public String getUsername() {
+        return getLogin();
     }
 
 

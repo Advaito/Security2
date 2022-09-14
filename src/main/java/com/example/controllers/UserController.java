@@ -7,13 +7,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
 
-    @GetMapping
+    @GetMapping(value = "login")
+    public String loginPage() {
+        return "user/login";
+    }
+    @GetMapping("user")
     public String index(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("user", user);
-        return "user/user";
+        return "user/userPage";
     }
 
 }

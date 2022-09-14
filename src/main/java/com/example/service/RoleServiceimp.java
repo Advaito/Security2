@@ -16,6 +16,8 @@ public class RoleServiceimp implements RoleService {
     public RoleServiceimp(RoleDao roleDao) {
         this.roleDao = roleDao;
     }
+
+
     @Override
     @Transactional
     public void addRole(Role role) {
@@ -37,5 +39,7 @@ public class RoleServiceimp implements RoleService {
         return roleDao.getAllRoles();
     }
 
-
+    public Role getRole(String name) {
+        return roleDao.getRole(name);
+    }
 }
