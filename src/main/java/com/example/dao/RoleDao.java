@@ -8,5 +8,5 @@ import java.util.List;
 public interface RoleDao {
     void saveRole(Role role);
     List<Role> getAllRoles();
-    public Role getRole(String name);
+    Role getRole(String name);
 }
