@@ -3,6 +3,7 @@ package com.example.service;
 
 import com.example.dao.UserDao;
 import com.example.models.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -11,14 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceimp implements UserService {
 
     private final UserDao userDao;
-
-
-    public UserServiceimp(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
     public List<User> getAllUsers() {
@@ -26,8 +23,12 @@ public class UserServiceimp implements UserService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         return userDao.getUserById(id);
+    }
+    @Override
+    public User getUserByName(String username) {
+        return userDao.getUserByName(username);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class UserServiceimp implements UserService {
 
     @Override
     @Transactional
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
 

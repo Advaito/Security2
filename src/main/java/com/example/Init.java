@@ -32,6 +32,7 @@ public class Init {
         Set<Role> roles = new HashSet<>();
 
         roles.add(user);
+        roles.add(admin);
         User user1 = new User("qwa", "$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e");
         user1.setRoles(roles);
         user1.setEmail("qwa@qwa.qwa");
@@ -39,15 +40,15 @@ public class Init {
         user1.setSurname("Resu1");
         user1.setAge(12);
 
-        roles = new HashSet<>();
-        roles.add(user);
-        roles.add(admin);
-        User user2 = new User("ewq", "$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e");
-        user2.setRoles(roles);
-        user2.setEmail("ewq@qwa.qwa");
+        Set<Role> roles2 = new HashSet<>();
+
+        roles2.add(user);
+        User user2 = new User("dsa", "$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e");
+        user2.setRoles(roles2);
+        user2.setEmail("dsa@qwa.qwa");
         user2.setName("User2");
-        user2.setSurname("Resu2");
-        user2.setAge(32);
+        user2.setSurname("Resu3");
+        user2.setAge(44);
 
         userService.saveUser(user1);
         userService.saveUser(user2);

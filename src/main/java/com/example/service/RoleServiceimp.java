@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dao.RoleDao;
 import com.example.models.Role;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,13 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 public class RoleServiceimp implements RoleService {
 
     private final RoleDao roleDao;
-    public RoleServiceimp(RoleDao roleDao) {
-        this.roleDao = roleDao;
-    }
-
 
     @Override
     @Transactional

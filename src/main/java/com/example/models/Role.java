@@ -1,5 +1,6 @@
 package com.example.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.Set;
 public class Role implements GrantedAuthority {
 
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
